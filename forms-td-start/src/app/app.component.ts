@@ -12,6 +12,10 @@ export class AppComponent {
   defaultQuestion = 'teacher';
   answer = '';
   genders = ['male', 'female']
+  user = {
+    username: '',
+    email: ''
+  }
 
   suggestUserName() {
 
@@ -48,6 +52,9 @@ export class AppComponent {
 
   onSubmit2() {
     console.log(this.singupForm);
+
+    this.user.username = this.singupForm.value.userData.username;
+    this.user.email = this.singupForm.value.userData.email;
   }
 
 }
