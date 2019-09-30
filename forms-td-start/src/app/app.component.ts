@@ -57,4 +57,7 @@ export class AppComponent {
     this.user.email = this.singupForm.value.userData.email;
   }
 
+  resetValues() {
+    this.singupForm.reset();
+  }
 }
