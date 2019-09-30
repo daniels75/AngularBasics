@@ -8,20 +8,20 @@ import {NgForm} from "@angular/forms";
 })
 export class AppComponent {
   // 2nd approach
-  @ViewChild('f') singupForm: NgForm;
-  defaultQuestion = 'pet';
-  answer: any;
+  @ViewChild('f', {static: false}) singupForm: NgForm;
+  defaultQuestion = 'teacher';
+  answer: '';
 
   suggestUserName() {
     const suggestedName = 'Superuser';
   }
 
   // 1st approach
-  // onSubmit(form: NgForm) {
-  //   console.log('submited' + form)
-  // }
+  onSubmit1(form: NgForm) {
+    console.log('submited' + form)
+  }
 
-  onSubmit() {
+  onSubmit2() {
     console.log(this.singupForm);
   }
 
