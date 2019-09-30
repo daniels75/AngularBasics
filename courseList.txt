@@ -1,3 +1,5 @@
 1. routing-start
 2. routing-project - shopping list project
 3. observable01
+4. forms-td-start - template forms
+5. forms-reactive-start - reactive forms
