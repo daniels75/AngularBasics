@@ -12,6 +12,9 @@
               class="form-control">
             <span class="help-block"
                   *ngIf="!signupForm.get('userData.username').valid && signupForm.get('userData.username').touched">
+              <span *ngIf="signupForm.get('userData.username').errors['nameIsForbidden']">
+                This name is forbidden
+              </span>
               Please provide a valid username
             </span>
           </div>
@@ -26,6 +29,9 @@
                   *ngIf="!signupForm.get('userData.email').valid && signupForm.get('userData.email').touched">
               Please provide a valid email
             </span>
+            <!-- span *ngIf="signupForm.get('userData.email').errors['emailIsForbidden']">
+                This email is forbidden
+              </span -->
           </div>
         </div>
         <div class="radio" *ngFor="let gender of genders">
