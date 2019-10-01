@@ -3,3 +3,4 @@
 3. observable01
 4. forms-td-start - template forms
 5. forms-reactive-start - reactive forms
+6. pipes-start
