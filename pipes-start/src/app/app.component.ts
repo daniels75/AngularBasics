@@ -6,6 +6,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  appStatus = new Promise((resolve) => {
+    setTimeout(() => {
+      resolve('This is showed after 2sec')
+    }, 2000)
+  })
   servers = [
     {
       instanceType: 'medium',
@@ -39,5 +44,14 @@ export class AppComponent {
       'list-group-item-warning': server.status === 'offline',
       'list-group-item-danger': server.status === 'critical'
     };
+  }
+
+  addServer() {
+    this.servers.push({
+      instanceType: 'small',
+      name: 'New Server',
+      status: 'stable',
+      started: new Date(2019, 1, 15)
+    })
   }
 }
