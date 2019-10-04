@@ -22,7 +22,10 @@ export class AppComponent implements OnInit {
   }
 
   onFetchPosts() {
-
+    this.http.get('https://ng-complete-guid-bb057.firebaseio.com/posts.json')
+      .subscribe(posts => {
+        console.log(posts);
+      })
   }
 
   onClearPosts() {
