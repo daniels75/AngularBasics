@@ -18,7 +18,7 @@ export class AppComponent implements OnInit {
   }
 
   onCreatePost(postData: Post) {
-      this.http.post('https://ng-complete-guid-bb057.firebaseio.com/posts.json', postData)
+      this.http.post<{name: string}>('https://ng-complete-guid-bb057.firebaseio.com/posts.json', postData)
       // Send Http request
         .subscribe((response) => {
             console.log(response);
@@ -30,7 +30,7 @@ export class AppComponent implements OnInit {
   }
 
   private fetchPosts() {
-    this.http.get('https://ng-complete-guid-bb057.firebaseio.com/posts.json')
+    this.http.get<{[key: string] : Post}>('https://ng-complete-guid-bb057.firebaseio.com/posts.json')
       .pipe(map((responseData: {[key: string] : Post}) => {
         const postArray: Post[] = [];
         for (const key in responseData) {
