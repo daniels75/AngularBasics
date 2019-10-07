@@ -10,10 +10,12 @@ import {Post} from "./post.model";
 })
 export class AppComponent implements OnInit {
   loadedPosts: Post[] = [];
+  isFetchingData: boolean;
 
   constructor(private http: HttpClient) {}
 
   ngOnInit() {
+    this.isFetchingData = false;
     this.onFetchPosts();
   }
 
@@ -30,21 +32,25 @@ export class AppComponent implements OnInit {
   }
 
   private fetchPosts() {
-    this.http.get<{[key: string] : Post}>('https://ng-complete-guid-bb057.firebaseio.com/posts.json')
-      .pipe(map((responseData: {[key: string] : Post}) => {
-        const postArray: Post[] = [];
-        for (const key in responseData) {
-          console.log('respsoneData: ', responseData);
-          if (responseData.hasOwnProperty(key)) {
+    this.isFetchingData = true;
+    setTimeout(()=> {
+      this.http.get<{ [key: string]: Post }>('https://ng-complete-guid-bb057.firebaseio.com/posts.json')
+        .pipe(map((responseData: { [key: string]: Post }) => {
+          const postArray: Post[] = [];
+          for (const key in responseData) {
+            console.log('respsoneData: ', responseData);
+            if (responseData.hasOwnProperty(key)) {
               postArray.push({...responseData[key], id: key});
+            }
           }
-        }
-        return postArray;
-      }))
-      .subscribe(posts => {
-        console.log(posts);
-        this.loadedPosts = posts;
-      })
+          return postArray;
+        }))
+        .subscribe(posts => {
+          this.isFetchingData = false;
+          console.log(posts);
+          this.loadedPosts = posts;
+        })
+    }, 500);
   }
 
   onClearPosts() {
