@@ -10,6 +10,7 @@ import {PostService} from "./post.service";
 export class AppComponent implements OnInit {
   loadedPosts: Post[] = [];
   isFetchingData: boolean;
+  error: null;
 
   constructor(private postService: PostService) {}
 
@@ -28,11 +29,16 @@ export class AppComponent implements OnInit {
 
   private fetchAllPosts() {
     this.isFetchingData = true;
+    this.error = null;
     this.postService.fetchPosts()
       .subscribe(posts => {
         this.isFetchingData = false;
         console.log(posts);
         this.loadedPosts = posts;
+      },
+        (error) => {
+        this.error = error.message;
+          console.log('cannot fetch data ' + error.message)
       })
   }
 
