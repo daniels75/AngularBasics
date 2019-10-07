@@ -6,12 +6,14 @@ import {map} from "rxjs/operators";
 @Injectable({providedIn: 'root'})
 export class PostService {
 
+  private baseUrl: string = 'https://ng-complete-guid-bb057.firebaseio.com/posts.json';
+
   constructor(private http: HttpClient) {
 
   }
 
   createPost(postData: Post ) {
-    this.http.post<{name: string}>('https://ng-complete-guid-bb057.firebaseio.com/posts.json', postData)
+    this.http.post<{name: string}>(this.baseUrl, postData)
     // Send Http request
       .subscribe((response) => {
         console.log(response);
@@ -19,7 +21,7 @@ export class PostService {
   }
 
   fetchPosts() {
-      return this.http.get<{ [key: string]: Post }>('https://ng-complete-guid-bb057.firebaseio.com/posts.json')
+      return this.http.get<{ [key: string]: Post }>(this.baseUrl)
         .pipe(map((responseData: { [key: string]: Post }) => {
           const postArray: Post[] = [];
           for (const key in responseData) {
@@ -31,4 +33,9 @@ export class PostService {
           return postArray;
         }));
   }
+
+  deletePosts() {
+    return this.http.delete(this.baseUrl);
+  }
+
 }
