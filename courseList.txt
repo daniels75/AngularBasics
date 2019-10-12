@@ -6,3 +6,5 @@
 6. pipes-start
 7. http-01-start
 8. auth-01-auth-component
+	key: AIzaSyAZm2T8vDRn-NQj44EO4tCy_yq-c8kGg2U
+9. 	
