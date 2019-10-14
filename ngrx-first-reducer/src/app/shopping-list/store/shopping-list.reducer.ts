@@ -1,6 +1,7 @@
 import { Action } from '@ngrx/store';
 
-import { Ingredient } from '../shared/ingredient.model';
+import { Ingredient } from '../../shared/ingredient.model';
+import {ADD_INGREDIENT} from "./shoping-list.action";
 
 const initialState = {
   ingredients: [
@@ -11,10 +12,10 @@ const initialState = {
 
 export function shoppingListReducer(state = initialState, action: Action) {
   switch (action.type) {
-    case 'ADD_INGREDIENT':
+    case ADD_INGREDIENT:
       return {
-        ...state,
-        ingredients: [...state.ingredients, action]
+        ...state,  // copy state
+        ingredients: [...state.ingredients, action] // then override what you want to change
       };
   }
 }
