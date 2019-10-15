@@ -14,6 +14,7 @@ import {Store} from "@ngrx/store";
 export class ShoppingListComponent implements OnInit, OnDestroy {
   //ingredients: Ingredient[];
   ingredients: Observable<{ingredients: Ingredient[]}>;
+  ingredients2: Ingredient[] = [];
   constructor(
     private slService: ShoppingListService,
     private loggingService: LoggingService,
@@ -22,6 +23,14 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.ingredients = this.store.select('shoppingList');
+
+    // alternative
+    // this.store.select('shoppingList').subscribe(
+    //   (next) => {
+    //     console.log(next);
+    //     this.ingredients2 = next.ingredients;
+    //   }
+    // )
     // this.ingredients = this.slService.getIngredients();
     // this.subscription = this.slService.ingredientsChanged.subscribe(
     //   (ingredients: Ingredient[]) => {
