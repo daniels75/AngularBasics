@@ -17,5 +17,7 @@ export function shoppingListReducer(state = initialState, action: ShoppingListAc
         ...state,  // copy state
         ingredients: [...state.ingredients, action.payload] // then override what you want to change
       };
+    default:
+      return state;
   }
 }
