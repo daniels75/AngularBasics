@@ -11,3 +11,5 @@
 
 installing ngRx
 npm install --save @ngrx/store
+
+https://firebase.google.com/docs/reference/rest/auth#section-create-email-password
