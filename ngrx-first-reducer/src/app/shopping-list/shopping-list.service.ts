@@ -1,5 +1,7 @@
 import { Ingredient } from '../shared/ingredient.model';
 import { Subject } from 'rxjs';
+import {LoggingService} from "../logging.service";
+import {Store} from "@ngrx/store";
 
 export class ShoppingListService {
   ingredientsChanged = new Subject<Ingredient[]>();
@@ -8,6 +10,11 @@ export class ShoppingListService {
     new Ingredient('Apples', 5),
     new Ingredient('Tomatoes', 10),
   ];
+
+
+  constructor(
+    private store: Store<{shoppingList: {ingredients: Ingredient[]}}>
+  ) {}
 
   getIngredients() {
     return this.ingredients.slice();
