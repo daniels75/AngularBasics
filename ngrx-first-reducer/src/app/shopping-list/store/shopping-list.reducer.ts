@@ -25,6 +25,16 @@ export function shoppingListReducer(
         ...state,  // copy state
         ingredients: [...state.ingredients, ...action.payload] // then override what you want to change
       };
+    case ShoppingListActions.DELETE_INGREDIENTS:
+      return {
+        ...state,  // copy state
+        ingredients: [...state.ingredients, action.payload] // then override what you want to change
+      };
+    case ShoppingListActions.UPDATE_INGREDIENTS:
+      return {
+        ...state,  // copy state
+        ingredients: [...state.ingredients, action.payload] // then override what you want to change
+      };
     default:
       return state;
   }
