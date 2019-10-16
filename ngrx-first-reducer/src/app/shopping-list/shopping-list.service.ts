@@ -14,8 +14,9 @@ export class ShoppingListService {
 
 
   constructor(
-    private store: Store<{shoppingList: {ingredients: Ingredient[]}}>
-  ) {}
+  ) {
+
+  }
 
   getIngredients() {
     return this.ingredients.slice();
