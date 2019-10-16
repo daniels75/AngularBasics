@@ -42,13 +42,13 @@ export class ShoppingListService {
     this.ingredients[index] = newIngredient;
     this.ingredientsChanged.next(this.ingredients.slice());
 
-    this.store.dispatch(new ShoppingListActions.UpdateIngredient({index: index, ingredient: newIngredient}))
+    // this.store.dispatch(new ShoppingListActions.UpdateIngredient({index: index, ingredient: newIngredient}))
   }
 
   deleteIngredient(index: number) {
     this.ingredients.splice(index, 1);
     this.ingredientsChanged.next(this.ingredients.slice());
 
-    this.store.dispatch(new ShoppingListActions.DeleteIngredient(index));
+    // this.store.dispatch(new ShoppingListActions.DeleteIngredient(index));
   }
 }
