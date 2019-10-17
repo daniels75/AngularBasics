@@ -13,3 +13,5 @@ installing ngRx
 npm install --save @ngrx/store
 
 https://firebase.google.com/docs/reference/rest/auth#section-create-email-password
+Sing up url: https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=
+Data storage: https://ng-complete-guid-bb057.firebaseio.com/recipes.json
