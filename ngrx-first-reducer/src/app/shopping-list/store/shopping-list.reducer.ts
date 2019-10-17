@@ -57,6 +57,20 @@ export function shoppingListReducer(
         ...state,  // copy state
         ingredients: updatedIngredients
       };
+    case ShoppingListActions.START_EDIT:
+      return {
+        ...state,
+        editedIngredientIndex: action.payload,
+        editedIngredient: { ...state.ingredients[action.payload] }
+        // this is a new object as a copy
+        // with {} and spread operator ...
+      }
+    case ShoppingListActions.STOP_EDIT:
+      return {
+        ...state,
+        editedIngredient: null,
+        editedIngredientIndex: -1
+      }
     default:
       return state;
   }
