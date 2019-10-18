@@ -36,26 +36,29 @@ export function shoppingListReducer(
         ...state,  // copy state
         ingredients: [...state.ingredients, ...action.payload] // then override what you want to change
       };
+    case ShoppingListActions.UPDATE_INGREDIENTS:
+      const ingredient = state.ingredients[state.editedIngredientIndex];
+      const updatedIngredient = {
+        ...ingredient,
+        ...action.payload
+      }
+      const updatedIngredients = [...state.ingredients];
+      updatedIngredients[state.editedIngredientIndex] = updatedIngredient;
+
+      return {
+        ...state,  // copy state
+        ingredients: updatedIngredients,
+        editedIngredientIndex: -1,
+        editedIngredient: null
+      };
     case ShoppingListActions.DELETE_INGREDIENTS:
       return {
         ...state,  // copy state
         ingredients: state.ingredients.filter((ig, idx) => {
-          return idx !== action.payload;
-        })
-
-      };
-    case ShoppingListActions.UPDATE_INGREDIENTS:
-      const ingredient = state.ingredients[action.payload.index];
-      const updatedIngredient = {
-        ...ingredient,
-        ...action.payload.ingredient
-      }
-      const updatedIngredients = [...state.ingredients];
-      updatedIngredients[action.payload.index] = updatedIngredient;
-
-      return {
-        ...state,  // copy state
-        ingredients: updatedIngredients
+          return idx !== state.editedIngredientIndex;
+        }),
+        editedIngredientIndex: -1,
+        editedIngredient: null
       };
     case ShoppingListActions.START_EDIT:
       return {
