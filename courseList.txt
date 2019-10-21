@@ -7,7 +7,8 @@
 7. http-01-start
 8. auth-01-auth-component
 	key: see firebase
-9. 	
+9. 	ngrx-auth-finished
+10. 
 
 installing ngRx
 npm install --save @ngrx/store
