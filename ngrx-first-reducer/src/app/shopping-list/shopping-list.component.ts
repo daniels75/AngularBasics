@@ -1,11 +1,11 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import {Observable, Subscription} from 'rxjs';
+import { Subscription, Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
 
 import { Ingredient } from '../shared/ingredient.model';
 import { LoggingService } from '../logging.service';
-import {Store} from "@ngrx/store";
-import * as fromShoppingList from './store/shopping-list.reducer';
-import * as ShoppingListActions from './store/shoping-list.action';
+import * as ShoppingListActions from './store/shopping-list.actions';
+import * as fromApp from '../store/app.reducer';
 
 @Component({
   selector: 'app-shopping-list',
@@ -13,12 +13,12 @@ import * as ShoppingListActions from './store/shoping-list.action';
   styleUrls: ['./shopping-list.component.css']
 })
 export class ShoppingListComponent implements OnInit, OnDestroy {
-  //ingredients: Ingredient[];
-  ingredients: Observable<{ingredients: Ingredient[]}>;
-  ingredients2: Ingredient[] = [];
+  ingredients: Observable<{ ingredients: Ingredient[] }>;
+  private subscription: Subscription;
+
   constructor(
     private loggingService: LoggingService,
-    private store: Store<fromShoppingList.AppState>
+    private store: Store<fromApp.AppState>
   ) {}
 
   ngOnInit() {
